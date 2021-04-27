@@ -3,8 +3,7 @@ import urllib.request
 import string
 import random, time
 count = 50
-# API_KEY = 'AIzaSyBJ7-Vj16CX7RQ4fT-fGtAXG5KX_K1CO_E'
-# API_KEY = 'AIzaSyAm9kBVxO-2bjWGI9FqFkkSKgOTH5fCF1A'
+
 with open("key.txt", 'r') as f:
     API_KEY = f.readline()
     print(API_KEY)
