@@ -5,8 +5,8 @@ import random, time
 count = 50
 # API_KEY = 'AIzaSyBJ7-Vj16CX7RQ4fT-fGtAXG5KX_K1CO_E'
 # API_KEY = 'AIzaSyAm9kBVxO-2bjWGI9FqFkkSKgOTH5fCF1A'
-with open("key.txt", 'r') as file:
-    API_KEY = file.readline()
+with open("key.txt", 'r') as f:
+    API_KEY = f.readline()
     print(API_KEY)
 ids = set()
 for i in range (60):
@@ -24,3 +24,7 @@ for i in range (60):
         #store your ids
         ids.add(videoId)
     print('Videos added, current size: ', len(ids))
+
+with open("video-ids.csv", "r") as f:
+    for id in ids:
+        f.write(id + ",")
