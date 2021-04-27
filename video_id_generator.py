@@ -25,6 +25,6 @@ for i in range (60):
         ids.add(videoId)
     print('Videos added, current size: ', len(ids))
 
-with open("video-ids.csv", "r") as f:
+with open("video-ids.csv", "w") as f:
     for id in ids:
         f.write(id + ",")
