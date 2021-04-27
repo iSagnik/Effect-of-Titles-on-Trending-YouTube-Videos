@@ -16,14 +16,14 @@ header = ["video_id"] + snippet_features + ["trending_date", "tags", "view_count
                                             "ratings_disabled", "description"]
 
 
-def setup(api_path, codes):
+def setup(api_path):
     with open(api_path, 'r') as file:
         api_key = file.readline()
 
     # with open(code_path) as file:
     #     country_codes = [x.rstrip() for x in file]
 
-    return api_key, codes
+    return api_key
 
 
 def prepare_feature(feature):
@@ -35,8 +35,9 @@ def prepare_feature(feature):
 
 def api_request(page_token, country_code):
     # Builds the URL and requests the JSON from it
-    request_url = f"https://www.googleapis.com/youtube/v3/videos?part=id,statistics,snippet{page_token}chart=Unspecified&regionCode={country_code}&maxResults=50&key={api_key}"
+    request_url = f"https://www.googleapis.com/youtube/v3/videos?part=id,statistics,snippet&chart=mostPopular&pageToken={page_token}&regionCode={country_code}&maxResults=50&key={api_key}"
     request = requests.get(request_url)
+    print(request_url)
     print(request)
     if request.status_code == 429:
         print("Temp-Banned due to excess requests, please wait and continue later")
@@ -145,6 +146,7 @@ if __name__ == "__main__":
     output_dir = "data/all_videos.csv"
     key_path = "key.txt"
     COUNTRY_CODE = "US"
-    api_key, country_codes = setup(key_path, ["US"])
-
+    api_key = setup(key_path)
+    country_codes = ["US"]
+    print(api_key)
     get_data()
